@@ -1,0 +1,31 @@
+{% extends 'faculty/base.html' %}
+
+{% block content %}
+<h1 class="text-3xl font-bold text-blue-900 mb-6">Кафедри факультету</h1>
+
+<div class="space-y-4">
+    {% for dept in departments %}
+    <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+        <h2 class="text-2xl font-bold mb-2">
+            <a href="{% url 'department_detail' dept.id %}" class="text-blue-900 hover:underline">
+                {{ dept.name }}
+            </a>
+        </h2>
+        <p class="text-gray-700 mb-3"><strong>Завідувач кафедри:</strong> {{ dept.head_name }}</p>
+
+        <h3 class="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-2">Випускові спеціальності:</h3>
+        <ul class="list-disc list-inside text-gray-700 text-sm">
+            {% for spec in dept.specialties.all %}
+                <li>
+                    <a href="{% url 'program_detail' spec.id %}" class="text-blue-700 hover:underline">
+                        {{ spec.code }} {{ spec.name }}
+                    </a>
+                </li>
+            {% empty %}
+                <li class="text-gray-400 italic">Немає закріплених спеціальностей</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

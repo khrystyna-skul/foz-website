@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}ФОЗ НаУКМА{% endblock %}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 text-gray-800 flex flex-col min-h-screen">
+    <header class="bg-blue-900 text-white shadow-md">
+        <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+            <a href="{% url 'home' %}" class="font-bold text-xl hover:text-blue-200">
+                ФОЗ НаУКМА
+            </a>
+            <nav class="space-x-6">
+                <a href="{% url 'home' %}" class="hover:underline font-medium">Головна</a>
+                <a href="{% url 'department_list' %}" class="hover:underline font-medium">Кафедри</a>
+                <a href="{% url 'program_list' %}" class="hover:underline font-medium">Спеціальності</a>
+                <a href="{% url 'exchange_list' %}" class="hover:underline font-medium text-amber-300">Програми обміну</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-4 py-8 flex-grow">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="bg-gray-800 text-white py-6 mt-12 text-center text-sm">
+        <p>&copy; Факультет охорони здоров'я НаУКМА</p>
+    </footer>
+</body>
+</html>
